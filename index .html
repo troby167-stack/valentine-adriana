@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Valentine 💖</title>
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@600;800&display=swap');
+
+    body {
+      margin: 0;
+      font-family: 'Nunito', sans-serif;
+      background: radial-gradient(circle at top, #ff9ad5, #ff5fa2);
+      overflow: hidden;
+      color: white;
+    }
+
+    .container {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      position: relative;
+      z-index: 2;
+    }
+
+    h1 {
+      font-size: 3rem;
+      margin-bottom: 10px;
+      text-shadow: 0 0 20px rgba(255,255,255,0.7);
+    }
+
+    p {
+      font-size: 1.4rem;
+      margin-bottom: 30px;
+    }
+
+    .buttons {
+      display: flex;
+      gap: 20px;
+    }
+
+    button {
+      padding: 16px 38px;
+      font-size: 20px;
+      border-radius: 40px;
+      border: 3px solid rgba(255,255,255,0.9);
+      cursor: pointer;
+      box-shadow: 0 12px 30px rgba(0,0,0,0.3);
+      transition: transform 0.2s, box-shadow 0.2s;
+      backdrop-filter: blur(6px);
+    }
+
+    button:active {
+      transform: scale(0.95);
+    }
+
+    .yes {
+      background: linear-gradient(135deg, #ffffff, #ffe0f0);
+      color: #ff3b7c;
+      font-weight: 800;
+    }
+
+    .no {
+      background: linear-gradient(135deg, #ff3b7c, #ff1f68);
+      color: white;
+      position: absolute;
+    }
+
+    .heart {
+      position: absolute;
+      bottom: -20px;
+      color: rgba(255,255,255,0.85);
+      animation: floatUp linear infinite;
+      pointer-events: none;
+    }
+
+    @keyframes floatUp {
+      from {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+      }
+      to {
+        transform: translateY(-110vh) scale(1.6);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<audio autoplay loop>
+  <source src="music.mp3" type="audio/mpeg">
+</audio>
+
+<div class="container">
+  <h1>Adriana 💖</h1>
+  <p>Will you be my Valentine?</p>
+
+  <div class="buttons">
+    <button class="yes" onclick="alert('Yaaay! 💕💖💕')">Yes</button>
+    <button class="no" ontouchstart="moveButton()" onclick="moveButton()">No</button>
+  </div>
+</div>
+
+<script>
+  function moveButton() {
+    const button = document.querySelector('.no');
+    const x = Math.random() * (window.innerWidth - button.offsetWidth);
+    const y = Math.random() * (window.innerHeight - button.offsetHeight);
+    button.style.left = x + 'px';
+    button.style.top = y + 'px';
+  }
+
+  function createHeart() {
+    const heart = document.createElement('div');
+    heart.classList.add('heart');
+    heart.innerHTML = '❤';
+    heart.style.left = Math.random() * 100 + 'vw';
+    heart.style.fontSize = (16 + Math.random() * 26) + 'px';
+    heart.style.animationDuration = (4 + Math.random() * 4) + 's';
+    document.body.appendChild(heart);
+
+    setTimeout(() => heart.remove(), 8000);
+  }
+
+  setInterval(createHeart, 300);
+</script>
+
+</body>
+</html>
